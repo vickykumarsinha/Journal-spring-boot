@@ -55,18 +55,5 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    //
-//    @GetMapping("/id/{id}")
-//    public ResponseEntity<UserEntity> getUserById(@PathVariable ObjectId id){
-//
-//        Optional<UserEntity> userEntity = userService.findUserById(id);
-//
-//        if(userEntity.isPresent()){
-//            return new ResponseEntity<>(userEntity.get(), HttpStatus.FOUND);
-//        }
-//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
-
-
 
 }

@@ -1,0 +1,15 @@
+
+
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://vickykumar898980:161278@journalspring.4jl21.mongodb.net/?retryWrites=true&w=majority
+      database: journaldb
+      auto-index-creation: true
+
+sever:
+  port: 8080
+  servlet:
+    context-path: /journal
+

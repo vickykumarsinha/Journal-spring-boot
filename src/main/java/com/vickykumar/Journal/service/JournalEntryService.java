@@ -47,12 +47,18 @@ public class JournalEntryService {
         return journalEntryRepo.findById(id);
     }
 
-    public void deleteById(ObjectId id, String userName){
+    public boolean deleteById(ObjectId id, String userName){
         UserEntity user = userService.findUserByName(userName);
-        user.getJournalEntries().removeIf(x -> x.getId().equals(id));
-        userService.saveUser(user);
-        journalEntryRepo.deleteById(id);
-    }
 
+        // finds Match of journal entry in user
+        boolean isThere = user.getJournalEntries().stream().anyMatch(x -> x.getId().equals(id));
+        if(isThere) {
+            user.getJournalEntries().removeIf(x -> x.getId().equals(id));
+            userService.saveUser(user);
+            journalEntryRepo.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 
 }

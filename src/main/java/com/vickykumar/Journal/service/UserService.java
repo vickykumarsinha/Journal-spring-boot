@@ -32,6 +32,14 @@ public class UserService {
         userRepository.save(userEntity);
     }
 
+    public void saveAdminUser(UserEntity userEntity){
+
+        // Encode pass then save it
+        userEntity.setPassword(passwordEncode.encode(userEntity.getPassword()));
+        userEntity.setRoles(List.of("USER", "ADMIN"));
+        userRepository.save(userEntity);
+    }
+
     public List<UserEntity> getAllUsers(){
         return userRepository.findAll();
     }

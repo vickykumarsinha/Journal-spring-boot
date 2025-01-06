@@ -26,11 +26,12 @@ public class SpringSecurity {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // Disable CSRF for /public/** endpoints
-        http.csrf(csrf -> csrf.ignoringRequestMatchers("/public/**", "/user/**"));
+        http.csrf(csrf -> csrf.ignoringRequestMatchers("/public/**", "/user/**", "/journal/**", "/admin/**"));
 
         // Configure endpoint access
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/public/**").permitAll() // Allow unauthenticated access
+                .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/user/**").authenticated()
                 .requestMatchers("/journal/**").authenticated()
                 .anyRequest().permitAll() // Default to permit all
